@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>dingr 3000</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <h1>dingr tyme</h1>
+  <p>Bell state: <strong id="bellstate"></strong></p>
+  <p><button id="onbutton" class="button" onclick="">ON</button></p>
+  <p><button id="offbutton" class="button button2">OFF</button></p>
+</body>
+<script>
+
+  ["on", "off"].forEach((state) => {
+    document.getElementById(`${state}button`).addEventListener('click', () => {
+      fetch(`/api/${state}`).then((res) => {
+        if (res.status !== 200) {
+          alert("something went wrong")
+        }
+
+        console.log(res.status);
+        console.log(res.text());
+        console.log(`button is ${state}!!!!!!`);
+
+        document.getElementById("bellstate").innerHTML = state;
+        document.body.style.backgroundImage = `url(http://192.168.4.44/sach${state}.jpg)`
+      }).catch(error => {
+        console.log(`ruh roh, 😢 ${error} 😖😖😖😖`);
+      })
+    })
+  })
+</script>
+
+</html>
