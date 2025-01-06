@@ -13,6 +13,7 @@
   <p>Bell state: <strong id="bellstate">%STATE%</strong></p>
   <p><button id="onbutton" class="button" onclick="">ON</button></p>
   <p><button id="offbutton" class="button button2">OFF</button></p>
+  <input type="range" id="speedselector" min="125" , max="255", value="255", disabled="True">
 </body>
 <script>
 
@@ -28,12 +29,32 @@
         console.log(`button is ${state}!!!!!!`);
 
         document.getElementById("bellstate").innerHTML = state;
+        document.getElementById("speedselector").disabled = state === "off"
         document.body.style.backgroundImage = `url(/sach${state}.jpg)`
       }).catch(error => {
-        console.log(`ruh roh, 😢 ${error} 😖😖😖😖`);
+        alert(`ruh roh, 😢 ${error} 😖😖😖😖`);
       })
     })
   })
+
+  document.getElementById("speedselector").addEventListener('change', (event) => {
+    console.log(`change event ${event.target.value}`);
+
+    const formData = new URLSearchParams();
+    formData.append('speed', event.target.value);
+
+    const response = fetch('/api/motorspeed', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    const data = response.text(); // Assuming the server returns plain text
+    console.log(data);
+  })
+
 </script>
 
 </html>
