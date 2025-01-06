@@ -10,7 +10,7 @@
 
 <body>
   <h1>dingr tyme</h1>
-  <p>Bell state: <strong id="bellstate"></strong></p>
+  <p>Bell state: <strong id="bellstate">%STATE%</strong></p>
   <p><button id="onbutton" class="button" onclick="">ON</button></p>
   <p><button id="offbutton" class="button button2">OFF</button></p>
 </body>
@@ -28,7 +28,7 @@
         console.log(`button is ${state}!!!!!!`);
 
         document.getElementById("bellstate").innerHTML = state;
-        document.body.style.backgroundImage = `url(http://192.168.4.44/sach${state}.jpg)`
+        document.body.style.backgroundImage = `url(/sach${state}.jpg)`
       }).catch(error => {
         console.log(`ruh roh, 😢 ${error} 😖😖😖😖`);
       })

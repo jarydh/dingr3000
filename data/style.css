@@ -7,7 +7,7 @@ html {
 
 body {
   /* Setting the background image */
-  background-image: url('sachon.jpg');
+  background-image: url('/sachoff.jpg');
   background-size: cover;
   /* Make sure the image covers the whole page */
   background-position: top;
